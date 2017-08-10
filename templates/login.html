@@ -1,0 +1,29 @@
+{% include "header.html" %}
+
+ <body align="center" style="background-color:#fff0b3">
+<div class="container">
+<h1 style="color:#00e6e6">Login</h1>
+<br>
+<form action="/login/" class="form-inline" method="post">
+	 <input type="text" class="form-control" name="username" placeholder="Username" value="{{request.form.username}}">
+	 
+	  <input type="password" class="form-control" name="password" placeholder="Password" value="{{request.form.password}}">
+	  
+	  
+	  <input type="submit" value="Login" class="btn btn-default">
+	  
+ </form>
+	<p> </p>
+	<p> </p>
+	<p style="color:blue">New at i-cabs?</p> 
+	<button><a href="/sign_up/" style="color:grey">Click to create account</a></button>
+
+<body>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
+</body>
+
+</div>
+</body>
+
+{% include "footer.html" %}

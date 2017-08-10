@@ -1,0 +1,30 @@
+{% include "header.html" %}
+
+
+<body align="center" style="background-color:#fff0b3">
+	<div class="container">
+		<h1 style="color:#00e6e6">Sign Up</h1>
+		<br>
+		{% from "_formhelpers.html" import render_field %}
+		<form method="post" action="/sign_up/">
+		 {{ form.csrf_token }}
+
+		<dl>
+			{{render_field(form.username)}}
+			{{render_field(form.email)}}
+			{{render_field(form.password)}}
+			{{render_field(form.confirm)}}
+			{{render_field(form.phone_no)}}
+			
+		</dl>
+		<p><input type=submit value=Register> </p>
+		<p></b>By clicking Register you accept our <a style="color:blue"href="footer.html">Terms and Conditions</a></b></p>
+		
+		</form>
+		<p style="color:blue">Alerady a member? <a href="/login/" style="color:grey"><button>Click to log in</button></a></p>
+		{% if error %}
+			<p class="error"><strong>Error:</strong>{{error}}</p>
+		{% endif %}
+	</div>
+</body>
+{% include "footer.html" %}

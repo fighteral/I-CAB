@@ -1,0 +1,32 @@
+{% include "header.html" %}
+
+ <body align="center" style="background-color:#fff0b3">
+
+<header>
+<div class="btn-group">
+  <button type="button" class="btn btn-success">Type of cab</button>
+  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="caret"></span>
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="/Sedan/" align="center">SEDAN<pre align="center">₹4/km</pre></a></li>
+	<li role="separator" class="divider"></li>
+    <li><a href="/SedanA.C./"align="center">SEDAN(A.C.)<pre align="center">₹7/km</pre></a></li>
+	<li role="separator" class="divider"></li>
+    <li><a href="/SUV/"align="center">SUV<pre align="center">₹10/km</pre></a></li>
+	<li role="separator" class="divider"></li>
+    <li><a href="/SUVA.C./"align="center">SUV(A.C.)<pre align="center">₹12/km</pre></a></li>
+    <li role="separator" class="divider"></li>
+    
+  </ul>
+</div>
+</header>
+
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
+
+</body>
+
+
+{% include "footer.html" %}

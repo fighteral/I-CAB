@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset=utf-8>
+	<title>i-cab</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link href="{{url_for('static',filename='css/bootstrap.min.css')}}" rel="stylesheet">
+	<link href="{{url_for('static',filename='cab.ico')}}" rel="shortcut icon">
+	<link href="{{url_for('static',filename='css/w3.css')}}" rel="stylesheet">
+	<link href="{{url_for('static',filename='css/slideshow.css')}}" rel="stylesheet">
+<style>
+		.block
+		{
+			position:absolute;
+			height:50%;
+			top:50%;
+			width:100%;
+			
+			
+		}
+		footer 
+		{ 
+			position:absolute;
+			display: block;
+			bottom:-65px;
+			width:100%;
+			background-color:#fff0b3;
+		}
+		.modal 
+		{
+			display: none; /* Hidden by default */
+			position: fixed; /* Stay in place */
+			z-index: 1; /* Sit on top */
+			padding-top: 100px; /* Location of the box */
+			left: 0;
+			top: 0;
+			font-size: 16px;
+			width: 100%; /* Full width */
+			height: 100%; /* Full height */
+			overflow: auto; /* Enable scroll if needed */
+			background-color: rgb(0,0,0); /* Fallback color */
+			background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+		}
+
+		/* Modal Content */
+		.modal-content 
+		{
+			background-color: #99e6ff;
+			margin: auto;
+			font-size: 16px;
+			padding: 20px;
+			border: 1px solid #888;
+			width: 40%;
+		}
+
+		/* The Close Button */
+		.close 
+		{
+			color: #aaaaaa;
+			float: right;
+			font-size: 28px;
+			font-weight: bold;
+		}
+
+		.close:hover,
+		.close:focus 
+		{
+			color: #000;
+			text-decoration: none;
+			cursor: pointer;
+		}
+		body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+		.w3-navbar,h1,button {font-family: "Montserrat", sans-serif}
+		.fa-anchor,.fa-coffee {font-size:200px}
+
+
+		.mySlides 
+		{
+			display:none;
+		}
+		.test
+		{
+			position:absolute; 
+			TOP:-140px; 
+			LEFT:0%; 
+			WIDTH:100%; 
+			HEIGHT:40%
+		}
+	
+</style>
+</head>
+<header>
+	<div class="navbar navbar-inverse">
+    
+      <a class="navbar-brand" href="/">
+	  <img style="max-width:120px; margin-top:-20px " src="{{url_for('static',filename='images/untitled.png')}}"></a>
+	  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Home</a>
+    
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li ><a href="/about/">About us</a></li>
+        <li><a href="/contact/">Contact us</a></li>
+       
+      </ul>
+	  
+	 <ul class="nav navbar-nav navbar-right">
+		{% if session.logged_in %}
+		
+		 <li><a href="/logout/">Logout</a></li>
+		{% endif %}
+		</ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+	  
+	
+
+</header>
+<body style="background-color:#fff0b3">
+	
+	<div class="w3-content w3-section"  style="max-width:500px">
+	  <img class="mySlides" STYLE="position:absolute; TOP:11%; LEFT:0%; WIDTH:100%; HEIGHT:40%" src="{{url_for('static',filename='images/first.jpg')}}">
+	  <img class="mySlides" STYLE="position:absolute; TOP:11%; LEFT:0%; WIDTH:100%; HEIGHT:40%" src="{{url_for('static',filename='images/second.jpg')}}">
+	  <img class="mySlides" STYLE="position:absolute; TOP:11%; LEFT:0%; WIDTH:100%; HEIGHT:40%" src="{{url_for('static',filename='images/third.jpg')}}">
+	</div>
+	
+	<div class="block" align="center">
+		<h1 style="top:10%" class="w3-margin w3-jumbo">iCABS</h1>
+		<p class="w3-xlarge">Intelligent Cab Booking System</p>
+		{% if session.logged_in %}
+		
+		<script>
+		var myIndex = 0;
+	carousel();
+
+	function carousel() 
+	{
+		var i;
+		var x = document.getElementsByClassName("mySlides");
+		for (i = 0; i < x.length; i++) 
+		{
+		   x[i].style.display = "none";
+		}
+		myIndex++;
+		if (myIndex > x.length) {myIndex = 1}
+		x[myIndex-1].style.display = "block";
+		setTimeout(carousel, 2000); // Change image every 2 seconds
+	}
+	
+	</script>
+		<a href="/cab/"><button id="myBtn" class="btn btn-primary" type="button">Select the cab</button></a>
+		{% else %}
+			<button id="myBtn" class="btn btn-primary">Book a Cab</button>
+			<!-- The Modal -->
+			<div id="myModal" class="modal"> 
+			<!-- Modal content -->
+			<div class="modal-content">
+			<span class="close"></span>
+			<form>
+			<button formaction="/login">Log In</button><h4>or</h4>
+			<button formaction="/sign_up">Sign Up</button>
+			</form>
+		{% endif %}
+		</div>	
+		</div>
+		</div>
+
+		
+		<footer>
+			<p align="center">Under Development!!!</p>	
+		</footer>
+		
+	</body>
+
+<script>
+	// Get the modal
+	var modal = document.getElementById('myModal');
+
+	// Get the button that opens the modal
+	var btn = document.getElementById("myBtn");
+
+	// Get the <span> element that closes the modal
+	var span = document.getElementsByClassName("close")[0];
+
+	// When the user clicks the button, open the modal
+	btn.onclick = function() {
+		modal.style.display = "block";
+	}
+
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function() {
+		modal.style.display = "none";
+	}
+
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+		if (event.target == modal) {
+			modal.style.display = "none";
+		}
+	}
+
+	var myIndex = 0;
+	carousel();
+
+	function carousel() 
+	{
+		var i;
+		var x = document.getElementsByClassName("mySlides");
+		for (i = 0; i < x.length; i++) 
+		{
+		   x[i].style.display = "none";
+		}
+		myIndex++;
+		if (myIndex > x.length) {myIndex = 1}
+		x[myIndex-1].style.display = "block";
+		setTimeout(carousel, 2000); // Change image every 2 seconds
+	}
+</script>

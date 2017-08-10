@@ -1,0 +1,24 @@
+{% extends "header.html" %}
+
+{% block body%}
+<body>
+	<div class="container">
+		<h1>sign up:</h1>
+		<br>
+		{% from "_formhelpers.html" import render_field %}
+		<form method="post" action="/booking/">
+		<dl>
+			 {{ form.hidden_tag() }}
+			{{render_field(form.start)}}
+			{{render_field(form.destination)}}
+			{{render_field(form.type_of_cab)}}
+			
+		</dl>
+		<p><input type=submit value="get estimate"></p>
+		</form>
+		{% if error %}
+			<p class="error"><strong>Error:</strong>{{error}}</p>
+		{% endif %}
+	</div>
+</body>
+{% endblock %}
